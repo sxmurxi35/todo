@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 6dvh 89dvh 5dvh;
+  background-color: #d6c0b3;
+}
+
+header {
+  background-color: #d6c0b3;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 20dvw 80dvw;
+}
+
+aside {
+  background-color: #d6c0b3;
+}
+
+.page-content {
+    background-color: #e4e0e1;
+    padding: 10px 15px;
+  border-radius: 10px 0 0 0;
+
+}
+
+footer {
+  background-color: #493628;
+}
