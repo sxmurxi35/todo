@@ -4,32 +4,48 @@
   box-sizing: border-box;
 }
 
-body {
-  display: grid;
-  grid-template-rows: 6dvh 89dvh 5dvh;
-  background-color: #d6c0b3;
-}
-
-header {
-  background-color: #d6c0b3;
+html {
+  font-size: 10px;
+  font-family: sans-serif;
 }
 
 main {
+  height: 100dvh;
   display: grid;
   grid-template-columns: 20dvw 80dvw;
 }
 
 aside {
-  background-color: #d6c0b3;
+  background-color: #ffead3;
+  padding: 20px 25px;
 }
 
 .page-content {
-    background-color: #e4e0e1;
-    padding: 10px 15px;
-  border-radius: 10px 0 0 0;
-
+  background-color: #fff0e0;
+  padding: 10px 15px;
 }
 
-footer {
-  background-color: #493628;
+aside h1 {
+  text-align: center;
+  font-size: 4.2rem;
+  margin-bottom: 10px;
+  color: #3A3A3A;
+}
+
+.h-line {
+  height: 3px;
+  background-color: #dacab9;
+  border-radius: 10px;
+}
+
+.sect-buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+a {
+  font-size: 2rem;
 }
