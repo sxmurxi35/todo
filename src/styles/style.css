@@ -13,28 +13,24 @@ main {
   height: 100dvh;
   display: grid;
   grid-template-columns: 20dvw 80dvw;
+  background-color: #060614;
 }
 
 aside {
-  background-color: #ffead3;
   padding: 20px 25px;
-}
-
-.page-content {
-  background-color: #fff0e0;
-  padding: 10px 15px;
+  border-right: 2px solid #141432;
 }
 
 aside h1 {
   text-align: center;
   font-size: 4.2rem;
   margin-bottom: 10px;
-  color: #3a3a3a;
+  color: #e6e4ff;
 }
 
 .h-line {
   height: 3px;
-  background-color: #dacab9;
+  background-color: #202036;
   border-radius: 10px;
 
   margin-bottom: 50px;
@@ -51,23 +47,49 @@ aside h1 {
 
 button {
   font-size: 2rem;
-  background-color: #FFF1E4;
+  background-color: #393E46;
   width: 70%;
   padding: 6px 7px;
-  border: 2px solid #F3E2CF;
-  color: #4a3a2a;
-  border-radius: 10px;
+  border: 2px solid #4E555E;
+  color: #EEEEEE;
+  border-radius: 5px;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  color: #2f241a;
-  background-color: #FFEEE0;
-  border: 2px solid #EEDBC6;
+  color: #FFFFFF;
+  background-color: #444B55;
+  border: 2px solid #5A6270;
+  box-shadow: 0 0 10px #747c8851;
 }
 
 button.selected {
-  background-color: #FFEADB;
-  border: 2px solid #E7D2BB;
-  color: #1f1812;
+  background-color: #2F343B;
+  border: 2px solid #606872;
+  color: #FFFFFF;
+}
+
+.add-btn{
+  width: 15px;
+  font-size: 1.8rem;
+  height: 15px;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #291dd2;
+  border: none;
+}
+
+.add-btn:hover{
+  box-shadow: 0 0 20px  #4138ba;
+    background-color: #291dd2;
+  border: none;
+  transform: scale(1.15);
+}
+
+.add-btn .add-btn-text{
+  transform: translate(0,-1px);
 }

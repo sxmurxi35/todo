@@ -1,0 +1,18 @@
+.page-content {
+  padding: 0 20px;
+}
+
+.con-header {
+  padding: 10px 25px 0 25px;
+  height: 70px;
+  margin-bottom: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: #C9D1D9;
+}
