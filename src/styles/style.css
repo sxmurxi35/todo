@@ -47,26 +47,32 @@ aside h1 {
 
 button {
   font-size: 2rem;
-  background-color: #393E46;
-  width: 70%;
+  background-color: transparent;
+  width: 80%;
   padding: 6px 7px;
-  border: 2px solid #4E555E;
+  border: none;
   color: #EEEEEE;
   border-radius: 5px;
+  border-bottom: 2px solid #1e1a72;
   transition: all 0.3s ease;
+  text-align: start;
 }
 
 button:hover {
   color: #FFFFFF;
-  background-color: #444B55;
-  border: 2px solid #5A6270;
+  background-color: #1e1a72;
+  /* border: 2px solid #5A6270; */
   box-shadow: 0 0 10px #747c8851;
+  transform: scale(1.05);
+
 }
 
 button.selected {
-  background-color: #2F343B;
-  border: 2px solid #606872;
+  background-color: #120e6b;
+  /* border: 2px solid #606872; */
+  box-shadow: 0 0 10px 2px #1e1a72;
   color: #FFFFFF;
+  transform: scale(1.02);
 }
 
 .add-btn{
