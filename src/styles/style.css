@@ -51,7 +51,7 @@ button {
   width: 80%;
   padding: 6px 7px;
   border: none;
-  color: #EEEEEE;
+  color: #eeeeee;
   border-radius: 5px;
   border-bottom: 2px solid #1e1a72;
   transition: all 0.3s ease;
@@ -59,23 +59,22 @@ button {
 }
 
 button:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #1e1a72;
   /* border: 2px solid #5A6270; */
   box-shadow: 0 0 10px #747c8851;
   transform: scale(1.05);
-
 }
 
 button.selected {
   background-color: #120e6b;
   /* border: 2px solid #606872; */
   box-shadow: 0 0 10px 2px #1e1a72;
-  color: #FFFFFF;
+  color: #ffffff;
   transform: scale(1.02);
 }
 
-.add-btn{
+.add-btn {
   width: 15px;
   font-size: 1.8rem;
   height: 15px;
@@ -89,13 +88,17 @@ button.selected {
   border: none;
 }
 
-.add-btn:hover{
-  box-shadow: 0 0 20px  #4138ba;
-    background-color: #291dd2;
+.add-btn:hover {
+  box-shadow: 0 0 20px #4138ba;
+  background-color: #291dd2;
   border: none;
   transform: scale(1.15);
 }
 
-.add-btn .add-btn-text{
-  transform: translate(0,-1px);
+.add-btn .add-btn-text {
+  transform: translate(0, -1px);
+}
+
+.hidden {
+  display: none;
 }
