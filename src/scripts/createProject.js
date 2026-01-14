@@ -1,4 +1,4 @@
-export default class createProject {
+class Project {
   constructor(name) {
     this._name = name;
     this._id = createID();
@@ -18,3 +18,14 @@ function createID() {
 
   return "id_" + generateID;
 }
+
+const projectsArray = [];
+
+function createProject(name) {
+  const project = new Project(name);
+
+  projectsArray.push(project);
+  localStorage.setItem("projects", JSON.stringify(projectsArray));
+}
+
+export { createProject };

@@ -1,4 +1,6 @@
-function newProjectDialog() {
+import { createProject } from "./createProject";
+
+function newTodoDialog() {
   const dialogWindow = document.createElement("dialog");
 
   const form = createForm("new-todo");
@@ -44,8 +46,26 @@ function newProjectDialog() {
   selectProj.name = "todo-projects";
   selectProj.id = "todo-projects";
   selectProj.classList.add("hidden");
-    labelProj.classList.add("hidden");
-    labelProj.id='todo-projects-label'
+  labelProj.classList.add("hidden");
+  labelProj.id = "todo-projects-label";
+
+
+  const storedProjects = localStorage.getItem("projects");
+  const projects = JSON.parse(storedProjects);
+  if (projects != null) {
+    for (let i = 0; i < projects.length; i++) {
+      const option = document.createElement("option");
+      option.value = projects[i]._name;
+      option.textContent = projects[i]._name;
+      selectProj.append(option);
+    }
+  } else if (projects == null) {
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = "Create a project";
+    selectProj.append(option);
+    selectProj.disabled = true;
+  }
 
   const formAppend = [
     labelName,
@@ -99,4 +119,4 @@ function createForm(name) {
   return form;
 }
 
-export { newProjectDialog };
+export { newTodoDialog };

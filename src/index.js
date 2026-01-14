@@ -1,33 +1,32 @@
 import "./styles/style.css";
 import loadAll from "./scripts/displayAll.js";
+import "./scripts/events.js";
 
 loadAll();
 
 const pageBtn = document.querySelectorAll(".page-btn");
 
 pageBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        pageBtn.forEach(btn => {
-        btn.classList?.remove('selected')  
-      })
-        btn.classList.add('selected')
+  btn.addEventListener("click", () => {
+    pageBtn.forEach((btn) => {
+      btn.classList?.remove("selected");
+    });
+    btn.classList.add("selected");
 
-        const btnID = btn.id
-        switch (btnID) {
-            case 'all-btn':
-                loadAll()
-                break
-            
-            case 'today-btn':
+    const btnID = btn.id;
+    switch (btnID) {
+      case "all-btn":
+        loadAll();
+        break;
 
-                break
-            
-            case 'impor-btn':
+      case "today-btn":
+        break;
 
-                break
-            
-            case 'comply-btn':
-                break
-        }
+      case "impor-btn":
+        break;
+
+      case "comply-btn":
+        break;
+    }
   });
 });
