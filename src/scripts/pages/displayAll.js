@@ -1,4 +1,4 @@
-import "../styles/all.css";
+import "../../styles/all.css";
 
 function loadAll() {
   const contentSect = document.querySelector(".page-content");

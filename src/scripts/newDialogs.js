@@ -49,9 +49,9 @@ function newTodoDialog() {
   labelProj.classList.add("hidden");
   labelProj.id = "todo-projects-label";
 
-
   const storedProjects = localStorage.getItem("projects");
   const projects = JSON.parse(storedProjects);
+  let selectedProjectId = null;
   if (projects != null) {
     for (let i = 0; i < projects.length; i++) {
       const option = document.createElement("option");
@@ -67,6 +67,9 @@ function newTodoDialog() {
     selectProj.disabled = true;
   }
 
+  const submitBtn = document.createElement("button");
+  submitBtn.textContent = "Add";
+
   const formAppend = [
     labelName,
     inputName,
@@ -80,7 +83,34 @@ function newTodoDialog() {
     inputCheckProj,
     labelProj,
     selectProj,
+    submitBtn,
   ];
+
+  formAppend.forEach((field) => {
+    form.append(field);
+  });
+  dialogWindow.append(form);
+
+  const contentSect = document.querySelector(".page-content");
+  contentSect.append(dialogWindow);
+  dialogWindow.showModal();
+}
+
+function newProjectDialog() {
+  const dialogWindow = document.createElement("dialog");
+
+  const form = createForm("new-project");
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Create new project!";
+
+  const labelName = createLabel("project-name", "Name");
+  const inputName = createInput("text", "todo-project", "todo-project");
+
+  const submitBtn = document.createElement("button");
+  submitBtn.textContent = "Create";
+
+  const formAppend = [heading, labelName, inputName, submitBtn];
 
   formAppend.forEach((field) => {
     form.append(field);
@@ -119,4 +149,4 @@ function createForm(name) {
   return form;
 }
 
-export { newTodoDialog };
+export { newTodoDialog, newProjectDialog };

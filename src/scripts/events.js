@@ -1,7 +1,7 @@
-import { newTodoDialog } from "./newDialogs";
+import { newTodoDialog, newProjectDialog } from "./newDialogs";
 
-const newProjectBtn = document.querySelector(".add-btn");
-newProjectBtn.addEventListener("click", () => {
+const newTodoBtn = document.querySelector(".add-btn");
+newTodoBtn.addEventListener("click", () => {
   newTodoDialog();
 
   const checkProj = document.querySelector("#check-project");
@@ -11,4 +11,9 @@ newProjectBtn.addEventListener("click", () => {
     selectProj.classList?.toggle("hidden");
     labelProj.classList?.toggle("hidden");
   });
+});
+
+const newProjectBtn = document.querySelector(".new-project-btn");
+newProjectBtn.addEventListener("click", () => {
+  newProjectDialog();
 });
