@@ -1,4 +1,5 @@
 import { newTodoDialog, newProjectDialog } from "./newDialogs";
+import { deleteTodo } from "./storage.js";
 
 const newTodoBtn = document.querySelector(".add-btn");
 newTodoBtn.addEventListener("click", () => {
@@ -16,4 +17,13 @@ newTodoBtn.addEventListener("click", () => {
 const newProjectBtn = document.querySelector(".new-project-btn");
 newProjectBtn.addEventListener("click", () => {
   newProjectDialog();
+});
+
+const contentSect = document.querySelector(".page-content");
+contentSect.addEventListener("click", (e) => {
+  if (e.target.classList.contains("del-btn")) {
+    const todoID = e.target.closest(".todo-sect").dataset.id;
+
+    deleteTodo(todoID)
+  }
 });

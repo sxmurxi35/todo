@@ -5,14 +5,15 @@ import infoIcon from "../icons/info.svg";
 
 const contentSect = document.querySelector(".content");
 function loadAll() {
+  contentSect.textContent = "";
   loadTodo();
 }
 
-function loadTodo() {
-  createTodo("test", "testtest", "high", "2021-01-12", null);
-  createTodo("test", "testtest", "low", "2021-01-12", null);
-  createTodo("test", "Cyberpunk is peak", "medium", "2077-01-01", null);
+createTodo("test", "testtest", "high", "2021-01-12", null);
+createTodo("test", "testtest", "low", "2021-01-12", null);
+createTodo("test", "Cyberpunk is peak", "medium", "2077-01-01", null);
 
+function loadTodo() {
   const todoArray = JSON.parse(localStorage.getItem("todo"));
 
   for (let i = 0; i < todoArray.length; i++) {
@@ -24,8 +25,10 @@ function loadTodo() {
     const delBtn = document.createElement("button");
     const delIcon = document.createElement("img");
     delIcon.src = binIcon;
+    delIcon.classList.add("del-btn");
     delBtn.append(delIcon);
     delBtn.classList.add("act-btn", "del-btn");
+    delBtn.id = 'delBtn'
 
     const infoBtn = document.createElement("button");
     const infoIconImg = document.createElement("img");
@@ -34,7 +37,7 @@ function loadTodo() {
     infoBtn.classList.add("act-btn", "info-btn");
 
     const btnSect = document.createElement("section");
-    btnSect.classList.add('act-btn-sect')
+    btnSect.classList.add("act-btn-sect");
     btnSect.append(infoBtn, delBtn);
 
     todoSect.append(name, dueDate, btnSect);

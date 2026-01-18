@@ -1,5 +1,6 @@
 .page-content {
   padding: 0 20px;
+  overflow: scroll;
 }
 
 .con-header {
@@ -83,13 +84,13 @@ h2 {
   transition: all 0.3s ease;
 }
 
-.del-btn:hover {
+button.del-btn:hover {
   background-color: hsl(0, 100%, 35%);
   transform: scale(1.15);
-  box-shadow: 0 0 10px #4138ba;
+  box-shadow: 0 0 10px hsl(0, 54%, 47%);
 }
 
-.info-btn:hover {
+button.info-btn:hover {
   background-color: #291dd2;
   box-shadow: 0 0 10px #4138ba;
   transform: scale(1.15);
