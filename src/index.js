@@ -1,6 +1,7 @@
 import "./styles/style.css";
-import loadAll from "./scripts/pages/displayAll.js";
+import {loadAll} from "./scripts/display.js";
 import "./scripts/events.js";
+
 
 loadAll();
 

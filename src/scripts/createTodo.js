@@ -1,4 +1,4 @@
-class createTodo {
+class Todo {
   constructor(name, desc, priority, dueDate, projectID) {
     this._name = name;
     this._desc = desc;
@@ -38,3 +38,15 @@ function createID() {
 
   return "id_" + generateID;
 }
+
+const todoArray = [];
+
+function createTodo(name, desc, priority, due, projectID) {
+  const todo = new Todo(name, desc, priority, due, projectID);
+
+  todoArray.push(todo);
+  localStorage.setItem("todo", JSON.stringify(todoArray));
+}
+
+
+export { createTodo };

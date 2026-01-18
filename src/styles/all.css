@@ -14,5 +14,83 @@
 h2 {
   font-size: 3.2rem;
   font-weight: 400;
-  color: #C9D1D9;
+  color: #c9d1d9;
+}
+
+.todo-sect {
+  background-color: hsl(243, 27%, 29%, 20%);
+  height: 50px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+
+  padding: 5px 15px;
+  transition: all 0.3s ease;
+}
+
+.todo-sect.high {
+  border-left: 5px solid hsl(0, 100%, 30%);
+}
+.todo-sect.high:hover {
+  border-left: 5px solid hsl(0, 100%, 45%);
+  background-color: hsl(0, 27%, 29%, 20%);
+}
+
+.todo-sect.medium {
+  border-left: 5px solid hsl(39, 100%, 30%);
+}
+
+.todo-sect.medium:hover {
+  background-color: hsl(40, 27%, 29%, 20%);
+  border-left: 5px solid hsl(39, 100%, 45%);
+}
+
+.todo-sect.low {
+  border-left: 5px solid hsl(120, 73%, 30%);
+}
+
+.todo-sect.low:hover {
+  border-left: 5px solid hsl(120, 73%, 45%);
+  background-color: hsl(120, 27%, 29%, 20%);
+}
+
+.content {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.act-btn-sect {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.act-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background-color: #291dd2;
+  transition: all 0.3s ease;
+}
+
+.del-btn:hover {
+  background-color: hsl(0, 100%, 35%);
+  transform: scale(1.15);
+  box-shadow: 0 0 10px #4138ba;
+}
+
+.info-btn:hover {
+  background-color: #291dd2;
+  box-shadow: 0 0 10px #4138ba;
+  transform: scale(1.15);
 }

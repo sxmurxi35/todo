@@ -1,5 +1,3 @@
-import { createProject } from "./createProject";
-
 function newTodoDialog() {
   const dialogWindow = document.createElement("dialog");
 
