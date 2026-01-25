@@ -2,18 +2,31 @@ import "../styles/all.css";
 import { createTodo } from "./createTodo";
 import binIcon from "../icons/bin.svg";
 import infoIcon from "../icons/info.svg";
+import moment from "moment";
 
 const contentSect = document.querySelector(".content");
 function loadAll() {
   contentSect.textContent = "";
-  loadTodo();
+  loadTodo("all");
 }
 
-createTodo("test", "testtest", "high", "2021-01-12", null);
-createTodo("test", "testtest", "low", "2021-01-12", null);
-createTodo("test", "Cyberpunk is peak", "medium", "2077-01-01", null);
+function loadImp() {
+  contentSect.textContent = "";
+  loadTodo("imp");
+}
 
-function loadTodo() {
+function loadToday() {
+  contentSect.textContent = "";
+  loadTodo("today");
+}
+
+const date = moment().format("L");
+
+createTodo("test", "testtest", "high", '02/25/2026', null, false);
+createTodo("test", "testtest", "low", date, null, false);
+createTodo("test", "Cyberpunk is peak", "medium", date, null, false);
+
+function loadTodo(mode) {
   const todoArray = JSON.parse(localStorage.getItem("todo"));
 
   for (let i = 0; i < todoArray.length; i++) {
@@ -28,7 +41,7 @@ function loadTodo() {
     delIcon.classList.add("del-btn");
     delBtn.append(delIcon);
     delBtn.classList.add("act-btn", "del-btn");
-    delBtn.id = 'delBtn'
+    delBtn.id = "delBtn";
 
     const infoBtn = document.createElement("button");
     const infoIconImg = document.createElement("img");
@@ -43,7 +56,14 @@ function loadTodo() {
     todoSect.append(name, dueDate, btnSect);
     todoSect.classList.add(priority, "todo-sect");
     todoSect.dataset.id = id;
-    contentSect.append(todoSect);
+
+    if (mode == "all") {
+      contentSect.append(todoSect);
+    } else if (mode == "imp" && priority == "high") {
+      contentSect.append(todoSect);
+    } else if (mode == "today" && todoArray[i]._dueDate == moment().format('L')) {
+      contentSect.append(todoSect);
+    }
   }
 }
 
@@ -53,4 +73,4 @@ function createPara(text) {
   return para;
 }
 
-export { loadAll };
+export { loadAll, loadImp, loadToday };

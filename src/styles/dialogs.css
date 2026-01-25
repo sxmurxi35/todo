@@ -1,0 +1,32 @@
+dialog{
+    margin: 0 auto;
+    margin-top: 15dvh;
+}
+
+dialog form{
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px 30px;
+}
+
+form h3{
+    font-size: 3.2rem;
+    margin-bottom: 5dvh;
+}
+
+form label{
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+
+form input{
+    padding: 5px 7px;
+    font-size: 1.8rem;
+    border: none;
+    outline: none;
+
+    border-bottom: 1px solid black;
+}

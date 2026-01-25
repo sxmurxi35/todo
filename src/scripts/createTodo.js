@@ -1,10 +1,11 @@
 class Todo {
-  constructor(name, desc, priority, dueDate, projectID) {
+  constructor(name, desc, priority, dueDate, projectID, isComplete) {
     this._name = name;
     this._desc = desc;
     this._priority = priority;
     this._dueDate = dueDate;
     this._projectID = projectID;
+    this._isComplete = isComplete;
     this._id = createID();
   }
 
@@ -31,6 +32,10 @@ class Todo {
   get id() {
     return this._id;
   }
+
+  get status() {
+    return this._isComplete;
+  }
 }
 
 function createID() {
@@ -41,8 +46,8 @@ function createID() {
 
 const todoArray = [];
 
-function createTodo(name, desc, priority, due, projectID) {
-  const todo = new Todo(name, desc, priority, due, projectID);
+function createTodo(name, desc, priority, due, projectID, isComplete) {
+  const todo = new Todo(name, desc, priority, due, projectID, isComplete);
 
   todoArray.push(todo);
   localStorage.setItem("todo", JSON.stringify(todoArray));

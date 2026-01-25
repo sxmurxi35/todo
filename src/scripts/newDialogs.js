@@ -1,7 +1,17 @@
+import { createTodo } from "./createTodo.js";
+import { createProject } from "./createProject.js";
+import moment from "moment";
+import "../styles/dialogs.css";
+
 function newTodoDialog() {
   const dialogWindow = document.createElement("dialog");
 
   const form = createForm("new-todo");
+  form.method = "dialog";
+  form.classList.add("todo-form");
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Create new todo!";
 
   const labelName = createLabel("todo-name", "Name");
   const inputName = createInput("text", "todo-name", "todo-name");
@@ -36,7 +46,7 @@ function newTodoDialog() {
   const inputCheckProj = createInput(
     "checkbox",
     "check-project",
-    "check-project"
+    "check-project",
   );
 
   const labelProj = createLabel("todo-projects", "Project");
@@ -49,11 +59,10 @@ function newTodoDialog() {
 
   const storedProjects = localStorage.getItem("projects");
   const projects = JSON.parse(storedProjects);
-  let selectedProjectId = null;
   if (projects != null) {
     for (let i = 0; i < projects.length; i++) {
       const option = document.createElement("option");
-      option.value = projects[i]._name;
+      option.value = projects[i]._id;
       option.textContent = projects[i]._name;
       selectProj.append(option);
     }
@@ -66,9 +75,11 @@ function newTodoDialog() {
   }
 
   const submitBtn = document.createElement("button");
+  submitBtn.id = "submit-btn";
   submitBtn.textContent = "Add";
 
   const formAppend = [
+    heading,
     labelName,
     inputName,
     labelDesc,
@@ -92,12 +103,35 @@ function newTodoDialog() {
   const contentSect = document.querySelector(".page-content");
   contentSect.append(dialogWindow);
   dialogWindow.showModal();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const dialogWindow = document.querySelector("dialog");
+    const todoName = document.querySelector("#todo-name").value;
+    const todoDesc = document.querySelector("#todo-desc").value;
+    const todoPriority = document.querySelector("#todo-priority").value;
+    let todoDue = document.querySelector("#todo-due").value;
+    let todoProject = document.querySelector("#todo-projects").value;
+
+    if (todoDue == "") {
+      todoDue = moment().format("L");
+    } else if (todoDue) {
+      todoDue = moment(todoDue).format('L')
+    }
+
+    console.log(todoName, todoDesc, todoPriority, todoDue, todoProject);
+    createTodo(todoName, todoDesc, todoPriority, todoDue, todoProject);
+    dialogWindow.close();
+    dialogWindow.remove();
+  });
 }
 
 function newProjectDialog() {
   const dialogWindow = document.createElement("dialog");
 
   const form = createForm("new-project");
+
+  form.classList.add("project-form");
 
   const heading = document.createElement("h3");
   heading.textContent = "Create new project!";
@@ -118,6 +152,17 @@ function newProjectDialog() {
   const contentSect = document.querySelector(".page-content");
   contentSect.append(dialogWindow);
   dialogWindow.showModal();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const dialogWindow = document.querySelector("dialog");
+    const projectName = document.querySelector("#todo-project").value;
+
+    console.log(projectName);
+    createProject(projectName);
+    dialogWindow.close();
+    dialogWindow.remove();
+  });
 }
 
 function createLabel(forId, text) {
@@ -141,10 +186,14 @@ function createInput(type, id, name) {
 
 function createForm(name) {
   const form = document.createElement("form");
-  form.method = "POST";
+  form.method = "dialog";
   form.name = name;
 
   return form;
+}
+
+function formValidation(...args) {
+  for (let i = 0; i < args.length; i++) {}
 }
 
 export { newTodoDialog, newProjectDialog };

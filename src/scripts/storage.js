@@ -6,7 +6,6 @@ function deleteTodo(id) {
   const todoIndex = todoArray.map((todo) => todo._id).indexOf(id);
 
   todoArray.splice(todoIndex, 1);
-  console.log(todoArray);
   localStorage.removeItem("todo");
   localStorage.setItem("todo", JSON.stringify(todoArray));
   loadAll();

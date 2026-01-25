@@ -1,5 +1,5 @@
 import "./styles/style.css";
-import { loadAll } from "./scripts/display.js";
+import { loadAll, loadImp, loadToday } from "./scripts/display.js";
 import "./scripts/events.js";
 
 loadAll();
@@ -22,9 +22,11 @@ pageBtn.forEach((btn) => {
         break;
 
       case "today-btn":
+        loadToday()
         break;
 
       case "impor-btn":
+        loadImp();
         break;
 
       case "comply-btn":

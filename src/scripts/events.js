@@ -24,6 +24,6 @@ contentSect.addEventListener("click", (e) => {
   if (e.target.classList.contains("del-btn")) {
     const todoID = e.target.closest(".todo-sect").dataset.id;
 
-    deleteTodo(todoID)
+    deleteTodo(todoID);
   }
 });
