@@ -1,7 +1,7 @@
-import { createTodo } from "./createTodo.js";
-import { createProject } from "./createProject.js";
+import { setTodo, setProject, getProjects } from "./storage.js";
 import moment from "moment";
 import "../styles/dialogs.css";
+import { render, renderProjects } from "./display.js";
 
 function newTodoDialog() {
   const dialogWindow = document.createElement("dialog");
@@ -57,8 +57,7 @@ function newTodoDialog() {
   labelProj.classList.add("hidden");
   labelProj.id = "todo-projects-label";
 
-  const storedProjects = localStorage.getItem("projects");
-  const projects = JSON.parse(storedProjects);
+  const projects = getProjects();
   if (projects != null) {
     for (let i = 0; i < projects.length; i++) {
       const option = document.createElement("option");
@@ -106,23 +105,7 @@ function newTodoDialog() {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const dialogWindow = document.querySelector("dialog");
-    const todoName = document.querySelector("#todo-name").value;
-    const todoDesc = document.querySelector("#todo-desc").value;
-    const todoPriority = document.querySelector("#todo-priority").value;
-    let todoDue = document.querySelector("#todo-due").value;
-    let todoProject = document.querySelector("#todo-projects").value;
-
-    if (todoDue == "") {
-      todoDue = moment().format("L");
-    } else if (todoDue) {
-      todoDue = moment(todoDue).format('L')
-    }
-
-    console.log(todoName, todoDesc, todoPriority, todoDue, todoProject);
-    createTodo(todoName, todoDesc, todoPriority, todoDue, todoProject);
-    dialogWindow.close();
-    dialogWindow.remove();
+    todoSubmit();
   });
 }
 
@@ -155,14 +138,40 @@ function newProjectDialog() {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const dialogWindow = document.querySelector("dialog");
-    const projectName = document.querySelector("#todo-project").value;
-
-    console.log(projectName);
-    createProject(projectName);
-    dialogWindow.close();
-    dialogWindow.remove();
+    projectSubmit();
   });
+}
+
+function todoSubmit() {
+  const dialogWindow = document.querySelector("dialog");
+  const todoName = document.querySelector("#todo-name").value;
+  const todoDesc = document.querySelector("#todo-desc").value;
+  const todoPriority = document.querySelector("#todo-priority").value;
+  let todoDue = document.querySelector("#todo-due").value;
+  let todoProject = document.querySelector("#todo-projects").value;
+
+  if (todoDue == "") {
+    todoDue = moment().format("L");
+  } else if (todoDue) {
+    todoDue = moment(todoDue).format("L");
+  }
+
+  console.log(todoName, todoDesc, todoPriority, todoDue, todoProject);
+  setTodo(todoName, todoDesc, todoPriority, todoDue, todoProject);
+  dialogWindow.close();
+  dialogWindow.remove();
+  render()
+}
+
+function projectSubmit() {
+  const dialogWindow = document.querySelector("dialog");
+  const projectName = document.querySelector("#todo-project").value;
+
+  console.log(projectName);
+  setProject(projectName);
+  dialogWindow.close();
+  dialogWindow.remove();
+  renderProjects();
 }
 
 function createLabel(forId, text) {
@@ -190,10 +199,6 @@ function createForm(name) {
   form.name = name;
 
   return form;
-}
-
-function formValidation(...args) {
-  for (let i = 0; i < args.length; i++) {}
 }
 
 export { newTodoDialog, newProjectDialog };

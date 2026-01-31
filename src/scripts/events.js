@@ -1,5 +1,6 @@
+import { render, visibleTodos } from "./display.js";
 import { newTodoDialog, newProjectDialog } from "./newDialogs";
-import { deleteTodo } from "./storage.js";
+import { changeStatusTodo, deleteTodo } from "./storage.js";
 
 const newTodoBtn = document.querySelector(".add-btn");
 newTodoBtn.addEventListener("click", () => {
@@ -25,5 +26,13 @@ contentSect.addEventListener("click", (e) => {
     const todoID = e.target.closest(".todo-sect").dataset.id;
 
     deleteTodo(todoID);
+    render();
+  }
+
+  if (e.target.classList.contains("status-btn")) {
+    const todoID = e.target.closest(".todo-sect").dataset.id;
+
+    changeStatusTodo(todoID);
+    render();
   }
 });
