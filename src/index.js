@@ -6,7 +6,6 @@ import {
   loadProject,
   loadToday,
   renderProjects,
-  visibleTodos,
 } from "./scripts/display.js";
 import "./scripts/events.js";
 
@@ -51,8 +50,9 @@ pageBtn.forEach((btn) => {
 });
 
 /*TODO
-  - status change if "complete" button pressed on todo
+  - status change if "complete" button pressed on todo ---DONE
   - style dialog windows
   - repair project button styling
   - add new dialog window after 'info' button pressed. dialog should allow user to edit todo
+  - somehow reset "assign to a project" value, cuz projects without checked assigning are assigned to a project ---DONE
 */

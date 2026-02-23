@@ -1,5 +1,5 @@
 import { render, visibleTodos } from "./display.js";
-import { newTodoDialog, newProjectDialog } from "./newDialogs";
+import { newTodoDialog, newProjectDialog } from "./dialogs.js";
 import { changeStatusTodo, deleteTodo } from "./storage.js";
 
 const newTodoBtn = document.querySelector(".add-btn");

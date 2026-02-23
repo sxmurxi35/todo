@@ -1,6 +1,6 @@
 import { setTodo, setProject, getProjects } from "./storage.js";
 import moment from "moment";
-import "../styles/dialogs.css";
+import "../styles/todo-dialog.css";
 import { render, renderProjects } from "./display.js";
 
 function newTodoDialog() {
@@ -9,18 +9,16 @@ function newTodoDialog() {
   const form = createForm("new-todo");
   form.method = "dialog";
   form.classList.add("todo-form");
+  form.reset();
 
   const heading = document.createElement("h3");
   heading.textContent = "Create new todo!";
 
-  const labelName = createLabel("todo-name", "Name");
-  const inputName = createInput("text", "todo-name", "todo-name");
+  const inputName = createInput("text", "todo-name", "todo-name", "Name");
 
-  const labelDesc = createLabel("todo-desc", "Description");
-  const textDesc = document.createElement("textarea");
-  textDesc.name = "todo-desc";
-  textDesc.id = "todo-desc";
+  const inputDue = createInput("date", "todo-due", "todo-due");
 
+  const inputPrioritySect = createSection("input-priority-sect");
   const labelPriority = createLabel("todo-priority", "Priority");
   const selectPriority = document.createElement("select");
   selectPriority.name = "todo-priority";
@@ -38,16 +36,17 @@ function newTodoDialog() {
   optHigh.value = "high";
   optHigh.textContent = "High";
   selectPriority.append(optLow, optMed, optHigh);
+  inputPrioritySect.append(labelPriority, selectPriority);
 
-  const labelDue = createLabel("todo-due", "Due date");
-  const inputDue = createInput("date", "todo-due", "todo-due");
-
+  const inputProjectSect = createSection("input-project-sect");
   const labelCheckProj = createLabel("check-project", "Assign to a project?");
   const inputCheckProj = createInput(
     "checkbox",
     "check-project",
     "check-project",
   );
+
+  const selectProjectSect = createSection("select-proj-sect");
 
   const labelProj = createLabel("todo-projects", "Project");
   const selectProj = document.createElement("select");
@@ -73,26 +72,17 @@ function newTodoDialog() {
     selectProj.disabled = true;
   }
 
+  selectProjectSect.append(labelProj, selectProj);
+  inputProjectSect.append(labelCheckProj, inputCheckProj, selectProjectSect);
+
+  const rightSection = createSection("todo-dial-right-sect");
+  rightSection.append(inputPrioritySect, inputProjectSect);
+
   const submitBtn = document.createElement("button");
   submitBtn.id = "submit-btn";
   submitBtn.textContent = "Add";
 
-  const formAppend = [
-    heading,
-    labelName,
-    inputName,
-    labelDesc,
-    textDesc,
-    labelPriority,
-    selectPriority,
-    labelDue,
-    inputDue,
-    labelCheckProj,
-    inputCheckProj,
-    labelProj,
-    selectProj,
-    submitBtn,
-  ];
+  const formAppend = [heading, inputName, inputDue, rightSection, submitBtn];
 
   formAppend.forEach((field) => {
     form.append(field);
@@ -156,11 +146,16 @@ function todoSubmit() {
     todoDue = moment(todoDue).format("L");
   }
 
+  const projectAssignCheckbox = document.querySelector("#check-project");
+  if (!projectAssignCheckbox.checked) {
+    todoProject = null;
+  }
+
   console.log(todoName, todoDesc, todoPriority, todoDue, todoProject);
   setTodo(todoName, todoDesc, todoPriority, todoDue, todoProject);
   dialogWindow.close();
   dialogWindow.remove();
-  render()
+  render();
 }
 
 function projectSubmit() {
@@ -183,14 +178,24 @@ function createLabel(forId, text) {
   return label;
 }
 
-function createInput(type, id, name) {
+function createInput(type, id, name, placeholder) {
   const input = document.createElement("input");
 
   input.type = type;
   input.id = id;
   input.name = name;
 
+  input.setAttribute("placeholder", placeholder);
+
   return input;
+}
+
+function createSection(className) {
+  const sect = document.createElement("section");
+
+  sect.classList.add(className);
+
+  return sect;
 }
 
 function createForm(name) {
