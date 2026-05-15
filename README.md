@@ -9,7 +9,7 @@ A modular task management application built with Vanilla JavaScript. This projec
 * Data Persistence: Integrated LocalStorage to ensure user tasks are saved across browser sessions (no data loss on refresh).
 * Modern Build Tooling: Fully powered by Webpack to handle bundling and development.
 
-## What I've Mastered
+## What I've Learned
 * Configuring Webpack 5 from scratch (entry points, loaders, and plugins).
 * Implementing ES6 Modules to maintain a clean separation of concerns.
 * Managing application state with the Web Storage API.
